@@ -176,8 +176,27 @@ print(deaths_by_hurricane(dict_hurricane))
 
 
 # write your catgeorize by mortality function here:
+def categorization_by_mortality(hurricane_info):
+    mortality_scale = {0: 0, 1: 100, 2: 500, 3: 1000, 4: 10000}
+    hurricane_mortality = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for i in hurricane_info:
+        num_deaths = hurricane_info[i]["death"]
+        if num_deaths == mortality_scale[0]:
+            hurricane_mortality[0].append(hurricane_info[i])
+        elif num_deaths > mortality_scale[0] and num_deaths <= mortality_scale[1]:
+            hurricane_mortality[1].append(hurricane_info[i])
+        elif num_deaths > mortality_scale[1] and num_deaths <= mortality_scale[2]:
+            hurricane_mortality[2].append(hurricane_info[i])
+        elif num_deaths > mortality_scale[2] and num_deaths <= mortality_scale[3]:
+            hurricane_mortality[3].append(hurricane_info[i])
+        elif num_deaths > mortality_scale[3] and num_deaths <= mortality_scale[4]:
+            hurricane_mortality[4].append(hurricane_info[i])
+        elif num_deaths > mortality_scale[4]:
+            hurricane_mortality[5].append(hurricane_info[i])
+    return hurricane_mortality
 
 
+print(categorization_by_mortality(dict_hurricane))
 # write your greatest damage function here:
 
 
