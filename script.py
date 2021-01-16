@@ -25,20 +25,25 @@ max_sustained_winds = [165, 160, 160, 175, 160, 160, 185, 160, 160, 175, 175, 16
 
 # areas affected by each hurricane
 areas_affected = [['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'],
-                  ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'],
+                  ['Lesser Antilles', 'The Bahamas',
+                      'United States East Coast', 'Atlantic Canada'],
                   ['The Bahamas', 'Northeastern United States'],
-                  ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'],
+                  ['Lesser Antilles', 'Jamaica', 'Cayman Islands',
+                      'Cuba', 'The Bahamas', 'Bermuda'],
                   ['The Bahamas', 'Cuba', 'Florida', 'Texas', 'Tamaulipas'],
                   ['Jamaica', 'Yucatn Peninsula'],
-                  ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'],
-                  ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'],
+                  ['The Bahamas', 'Florida', 'Georgia',
+                      'The Carolinas', 'Virginia'],
+                  ['Southeastern United States',
+                      'Northeastern United States', 'Southwestern Quebec'],
                   ['Bermuda', 'New England', 'Atlantic Canada'],
                   ['Lesser Antilles', 'Central America'],
                   ['Texas', 'Louisiana', 'Midwestern United States'],
                   ['Central America'],
                   ['The Caribbean', 'Mexico', 'Texas'],
                   ['Cuba', 'United States Gulf Coast'],
-                  ['The Caribbean', 'Central America', 'Mexico', 'United States Gulf Coast'],
+                  ['The Caribbean', 'Central America',
+                      'Mexico', 'United States Gulf Coast'],
                   ['Mexico'],
                   ['The Caribbean', 'United States East coast'],
                   ['The Caribbean', 'Yucatn Peninsula', 'Mexico', 'South Texas'],
@@ -46,7 +51,8 @@ areas_affected = [['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'
                   ['The Caribbean', 'United States East Coast'],
                   ['The Bahamas', 'Florida', 'United States Gulf Coast'],
                   ['Central America', 'Yucatn Peninsula', 'South Florida'],
-                  ['Greater Antilles', 'Bahamas', 'Eastern United States', 'Ontario'],
+                  ['Greater Antilles', 'Bahamas',
+                      'Eastern United States', 'Ontario'],
                   ['The Caribbean', 'Venezuela', 'United States Gulf Coast'],
                   ['Windward Islands', 'Jamaica', 'Mexico', 'Texas'],
                   ['Bahamas', 'United States Gulf Coast'],
@@ -54,9 +60,12 @@ areas_affected = [['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'
                   ['Greater Antilles', 'Central America', 'Florida'],
                   ['The Caribbean', 'Central America'],
                   ['Nicaragua', 'Honduras'],
-                  ['Antilles', 'Venezuela', 'Colombia', 'United States East Coast', 'Atlantic Canada'],
-                  ['Cape Verde', 'The Caribbean', 'British Virgin Islands', 'U.S. Virgin Islands', 'Cuba', 'Florida'],
-                  ['Lesser Antilles', 'Virgin Islands', 'Puerto Rico', 'Dominican Republic', 'Turks and Caicos Islands'],
+                  ['Antilles', 'Venezuela', 'Colombia',
+                      'United States East Coast', 'Atlantic Canada'],
+                  ['Cape Verde', 'The Caribbean', 'British Virgin Islands',
+                      'U.S. Virgin Islands', 'Cuba', 'Florida'],
+                  ['Lesser Antilles', 'Virgin Islands', 'Puerto Rico',
+                      'Dominican Republic', 'Turks and Caicos Islands'],
                   ['Central America', 'United States Gulf Coast (especially Florida Panhandle)']]
 
 # damages (USD($)) of hurricanes
@@ -67,41 +76,47 @@ damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M
            '720M', '15.1B', '64.8B', '91.6B', '25.1B']
 
 # deaths for each hurricane
-deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,318,107,
-          65,19325,51,124,17,1836,125,87,45,133,603,138,3057,74]
+deaths = [90, 4000, 16, 3103, 179, 184, 408, 682, 5, 1023, 43, 319, 688, 259, 37, 11, 2068, 269, 318, 107,
+          65, 19325, 51, 124, 17, 1836, 125, 87, 45, 133, 603, 138, 3057, 74]
 
 # write your update damages function here:
 
+
 def damage_converted(damages):
-    damages_new =  []
-    conversion = {"M":1000000,"B":100000000}
+    damages_new = []
+    conversion = {"M": 1000000, "B": 100000000}
     for i in damages:
         if i == "Damages not recorded":
             damages_new.append(i)
         elif not i.find("M") != -1:
-            j = float(i[0:i.find("M")])* conversion["M"]
+            j = float(i[0:i.find("M")]) * conversion["M"]
             damages_new.append(j)
         elif i.find("B") != -1:
-            k = float(i[0:i.find("B")])* conversion["B"]
+            k = float(i[0:i.find("B")]) * conversion["B"]
             damages_new.append(k)
     return damages_new
 
-def dictionary(name, month, year,max_sustained_winds, areas_affected, damage, death):
+
+def dictionary(name, month, year, max_sustained_winds, areas_affected, damage, death):
     hurricanes_info = {}
     length = len(name)
     for i in range(length):
         hurricanes_info[name[i]] = {
-            "names":name[i],
-            "month":month[i],
-            "year":year[i],
-            "max sustained winds":max_sustained_winds[i],
-            "areas affected":areas_affected[i],
-            "damage":damage[i],
-            "death":death[i]
+            "names": name[i],
+            "month": month[i],
+            "year": year[i],
+            "max sustained winds": max_sustained_winds[i],
+            "areas affected": areas_affected[i],
+            "damage": damage[i],
+            "death": death[i]
         }
     return hurricanes_info
-dict_hurricane = dictionary(names,months,years,max_sustained_winds,areas_affected,damages,deaths)
+
+
+dict_hurricane = dictionary(
+    names, months, years, max_sustained_winds, areas_affected, damages, deaths)
 print(dict_hurricane)
+
 
 def hurricane_by_year(hurricanes_info):
     hurricane_year = {}
@@ -111,11 +126,9 @@ def hurricane_by_year(hurricanes_info):
         if current_year not in hurricane_year:
             hurricane_year[current_year] = current_hurricane
     return hurricane_year
+
+
 print(hurricane_by_year(dict_hurricane))
-
-
-
-
 
 
 # write your count affected areas function here:
@@ -130,45 +143,42 @@ def affect_areas_dict(hurricane_info):
                 affected_dict[area] += 1
     return affected_dict
 
+
 affected_area_all = affect_areas_dict(dict_hurricane)
 print(affected_area_all)
-
-
 
 
 # write your find most affected area function here:
 
 def most_affected(affected_areas):
-    most_affected_dict = dict(sorted(affected_areas.items(),key=lambda item:item[1],reverse = True))
+    most_affected_dict = dict(
+        sorted(affected_areas.items(), key=lambda item: item[1], reverse=True))
     return most_affected_dict
+
 
 print(most_affected(affected_area_all))
 
 
-
-
 # write your greatest number of deaths function here:
 
+def deaths_by_hurricane(hurricane_info):
+    deaths_dict = {}
+    for i in hurricane_info:
+        name_of_hurricane = hurricane_info[i]["names"]
+        deaths_from_hurricane = hurricane_info[i]["death"]
+        deaths_dict[name_of_hurricane] = deaths_from_hurricane
+        sorted_deaths = dict(
+            sorted(deaths_dict.items(), key=lambda item: item[1], reverse=True))
+    return sorted_deaths
 
 
-
-
+print(deaths_by_hurricane(dict_hurricane))
 
 
 # write your catgeorize by mortality function here:
 
 
-
-
-
-
-
 # write your greatest damage function here:
 
 
-
-
-
-
-
-# write your catgeorize by damage function here:
+# write your catgeorize by damage function here
